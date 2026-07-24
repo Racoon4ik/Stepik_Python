@@ -1,3 +1,4 @@
+print("Результат:", final_text)
 lang = input("Выберите язык (а - англ.; р - русс.): ").lower()
 choose = input("Шифрование (ш) или дешифрование (д)? ").lower()
 k = int(input("Какой сдвиг? "))
@@ -7,26 +8,23 @@ def process_shifra(n, lang, answer, phrase):
         n = -n
     result = ""
     for char in phrase:
+        start = None
+        alphabet_size = 26
         if lang == "а":
             if 'A' <= char <= 'Z':
                 start = ord('A')
-                result += chr((ord(char) - start + n) % 26 + start)
             elif 'a' <= char <= 'z':
                 start = ord('a')
-                result += chr((ord(char) - start + n) % 26 + start)
-            else:
-                result += char
         elif lang == "р":
+            alphabet_size = 32
             if 'А' <= char <= 'Я':
                 start = ord('А')
-                result += chr((ord(char) - start + n) % 32 + start)
             elif 'а' <= char <= 'я':
                 start = ord('а')
-                result += chr((ord(char) - start + n) % 32 + start)
-            else:
-                result += char
+        if start is not None:
+            result += chr((ord(char) - start + n) % alphabet_size + start)
         else:
-            result += char 
+            result += char
     return result
 final_text = process_shifra(k, lang, choose, text)
 print("Результат:", final_text)
