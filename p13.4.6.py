@@ -14,4 +14,4 @@ def number_of_factors(num):
 n = int(input())
 
 # вызываем функцию
-print(number_of_factors(n))
+print(number_of_factors(n)) 
